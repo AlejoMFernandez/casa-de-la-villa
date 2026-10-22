@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>La Villa · Resto &amp; Eventos · Cocina de autor en Villa Devoto</title>
+<meta name="description" content="La Villa: cocina de autor de estación, carnes a las brasas y coctelería en una casona de Villa Devoto. Cenas de miércoles a sábado, almuerzos sábados y domingos. Reservá tu mesa.">
+<meta name="theme-color" content="#16110E">
+<meta property="og:title" content="La Villa · Resto &amp; Eventos">
+<meta property="og:description" content="Cocina de autor en una casona de Villa Devoto. Reservá tu mesa.">
+<meta property="og:image" content="img/hero-noche.webp">
+<link rel="icon" href="img/isotipo.svg" type="image/svg+xml">
+<script>
+  // Antes de pintar: intro (si corresponde) y "el reloj" de la casona (día / noche según la hora del local).
+  (function () {
+    var d = document.documentElement, q = new URLSearchParams(location.search);
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce && !q.has('sinintro')) {
+      d.classList.add('con-intro');
+      d.style.overflow = 'hidden';
+      setTimeout(function () { d.style.overflow = ''; }, 5200); // seguro anti-trabas
+    }
+    var m = q.get('momento');
+    if (m !== 'dia' && m !== 'noche') {
+      var h = Number(new Intl.DateTimeFormat('en-GB', { timeZone: 'America/Argentina/Buenos_Aires', hour: '2-digit', hourCycle: 'h23' }).format(new Date()));
+      m = (h >= 7 && h < 19) ? 'dia' : 'noche';
+    }
+    d.dataset.momento = m;
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&amp;family=Jost:wght@300;400;500&amp;display=swap">
+<link rel="stylesheet" href="kit/kit.css?v=1">
+<link rel="stylesheet" href="css/style.css?v=1">
+</head>
+<body>
+
+<!-- INTRO: se prende el fogón -->
+<div id="intro" aria-hidden="true">
+  <div class="intro__brasa"></div>
+  <div class="intro__halo"></div>
+  <img class="intro__iso" src="img/isotipo.svg" alt="" width="92" height="92">
+  <div class="intro__nombre"><span>L</span><span>A</span><span>&nbsp;</span><span>V</span><span>I</span><span>L</span><span>L</span><span>A</span></div>
+</div>
+
+<header class="top" id="top">
+  <a class="top__marca" href="#inicio" aria-label="La Villa, inicio">
+    <img src="img/isotipo.svg" alt="" width="40" height="40">
+    <span>LA VILLA</span>
+  </a>
+  <nav class="top__nav" aria-label="Secciones">
+    <a href="#carta">Carta</a>
+    <a href="#casa">La casa</a>
+    <a href="#eventos">Eventos</a>
+    <a href="#visitanos">Visitanos</a>
+  </nav>
+  <button type="button" class="btn btn--laton top__cta" data-kit-open="reservas">Reservá tu mesa</button>
+  <button type="button" class="top__burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+</header>
+
+<div class="menu" id="menu" hidden>
+  <nav aria-label="Menú">
+    <a href="#carta" style="--d:1">Carta</a>
+    <a href="#casa" style="--d:2">La casa</a>
+    <a href="#fuego" style="--d:3">Del fuego a la mesa</a>
+    <a href="#eventos" style="--d:4">Eventos</a>
+    <a href="#visitanos" style="--d:5">Visitanos</a>
+  </nav>
+  <button type="button" class="btn btn--laton" data-kit-open="reservas" style="--d:6">Reservá tu mesa</button>
+</div>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio" aria-label="La Villa">
+    <div class="hero__foto">
+      <img id="heroImg" alt="La Villa por dentro" width="1365" height="1706" fetchpriority="high" decoding="async">
+      <script>
+        (function () {
+          var i = document.getElementById('heroImg'), dia = document.documentElement.dataset.momento === 'dia';
+          i.src = dia ? 'img/hero-dia.webp' : 'img/hero-noche.webp';
+          i.alt = dia ? 'El salón de La Villa con luz de mediodía' : 'La barra de La Villa iluminada de noche';
+        })();
+      </script>
+      <noscript><img src="img/hero-noche.webp" alt="La barra de La Villa iluminada de noche"></noscript>
+    </div>
+    <div class="hero__velo"></div>
+    <div class="hero__pie">
+      <div class="hero__txt">
+        <p class="kicker hero__kicker">Cocina de autor · Villa Devoto</p>
+        <h1 class="hero__titulo"><span class="mascara"><span>LA VILLA</span></span></h1>
+        <div class="hero__botones">
+          <button type="button" class="btn btn--laton" data-kit-open="reservas">Reservá</button>
+          <a class="btn btn--linea" href="#carta">La carta</a>
+        </div>
+      </div>
+      <div class="hero__lado">
+        <p class="estado" id="estado"><span class="estado__punto"></span><span class="estado__txt">Cenas de miércoles a sábado · 20 a 24 h</span></p>
+        <a class="hero__bajar" href="#casa">Deslizá <span aria-hidden="true">↓</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LA CASA -->
+  <section class="casa bloque" id="casa">
+    <div class="cabeza">
+      <p class="kicker rv">La casa</p>
+      <h2 class="titulo rv" style="--d:1">Una casona <em>señorial</em> en Villa Devoto</h2>
+    </div>
+    <div class="arcos">
+      <figure class="arco rv-foto" style="--d:0"><div class="arco__marco"><img src="img/casa-salon.webp" alt="El salón de techos altos" width="1100" height="1376" loading="lazy" decoding="async"></div><figcaption>Salón</figcaption></figure>
+      <figure class="arco arco--bajo rv-foto" style="--d:1"><div class="arco__marco"><img src="img/casa-barra.webp" alt="La barra iluminada" width="892" height="1115" loading="lazy" decoding="async"></div><figcaption>Barra</figcaption></figure>
+      <figure class="arco rv-foto" style="--d:2"><div class="arco__marco"><img src="img/casa-patio.webp" alt="El patio con faroles" width="1100" height="1375" loading="lazy" decoding="async"></div><figcaption>Patio</figcaption></figure>
+      <figure class="arco arco--medio rv-foto" style="--d:3"><div class="arco__marco"><img src="img/casa-fogon.webp" alt="El fogón de la entrada" width="1000" height="1778" loading="lazy" decoding="async"></div><figcaption>Fogón</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- DEL FUEGO A LA MESA -->
+  <section class="fuego" id="fuego" aria-label="Del fuego a la mesa">
+    <div class="fuego__pin">
+      <div class="fuego__pista">
+        <div class="fuego__intro">
+          <p class="kicker rv">Cocina de autor</p>
+          <h2 class="titulo rv" style="--d:1">Del fuego<br><em>a la mesa.</em></h2>
+        </div>
+        <figure class="cuadro"><img src="img/fuego-brasas.webp" alt="Brasas del horno de carbón" width="640" height="1136" loading="lazy" decoding="async"><figcaption>Brasas</figcaption></figure>
+        <figure class="cuadro cuadro--alto"><img src="img/fuego-llama.webp" alt="Llama en la sartén" width="720" height="1280" loading="lazy" decoding="async"><figcaption>Fuego</figcaption></figure>
+        <figure class="cuadro"><img src="img/fuego-cocina.webp" alt="El cocinero en la línea" width="1000" height="1250" loading="lazy" decoding="async"><figcaption>Oficio</figcaption></figure>
+        <figure class="cuadro cuadro--alto"><img src="img/fuego-emplatado.webp" alt="Emplatado de un pescado" width="1000" height="1250" loading="lazy" decoding="async"><figcaption>Detalle</figcaption></figure>
+        <figure class="cuadro"><img src="img/fuego-mesa.webp" alt="Un plato llega a la mesa" width="1000" height="1250" loading="lazy" decoding="async"><figcaption>Mesa</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARTA -->
+  <section class="carta bloque" id="carta">
+    <div class="carta__cabeza">
+      <div>
+        <p class="kicker rv">Nuestro menú muta estacionalmente</p>
+        <h2 class="titulo rv" style="--d:1">La carta de estación</h2>
+      </div>
+      <div class="carta__paginas rv" style="--d:2" role="tablist" aria-label="Partes de la carta">
+        <button type="button" role="tab" data-pagina="cocina" aria-selected="true" class="is-on">Cocina</button>
+        <button type="button" role="tab" data-pagina="dulce" aria-selected="false">Dulce</button>
+        <button type="button" role="tab" data-pagina="barra" aria-selected="false">Barra</button>
+      </div>
+    </div>
+    <div class="carta__cuerpo rv" style="--d:2">
+      <nav class="carta__indice" aria-label="Secciones de la carta"></nav>
+      <div class="carta__lista">
+        <div class="carta__seccion-cabeza">
+          <h3 class="carta__seccion"></h3>
+          <span class="carta__linea"></span>
+          <span class="carta__cuenta"></span>
+        </div>
+        <p class="carta__nota" hidden></p>
+        <div data-kit="carta"></div>
+        <div class="carta__pie">
+          <button type="button" class="carta__nav" data-ir="-1"></button>
+          <span class="carta__leyenda"><span class="punto"></span> con foto · Servicio de mesa $2.000</span>
+          <button type="button" class="carta__nav carta__nav--sig" data-ir="1"></button>
+        </div>
+      </div>
+      <figure class="carta__foto" aria-hidden="true">
+        <div class="carta__arco"><img class="a" alt="" decoding="async"><img class="b" alt="" decoding="async"></div>
+        <figcaption></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- RESERVAS -->
+  <section class="reserva bloque" id="reservar">
+    <figure class="reserva__foto rv-foto">
+      <div class="arco__marco">
+        <img src="img/mesa-noche.webp" data-src-dia="img/mesa-dia.webp" alt="Una mesa a la luz de las lámparas" width="1080" height="1350" loading="lazy" decoding="async">
+      </div>
+    </figure>
+    <div class="reserva__form">
+      <p class="kicker rv">Te esperamos en La Villa</p>
+      <h2 class="titulo rv" style="--d:1">Reservá tu mesa</h2>
+      <p class="bajada rv" style="--d:2">Cenas de miércoles a sábado, de 20 a 24 h. Almuerzos sábados y domingos, de 12 a 16 h.</p>
+      <div class="rv" style="--d:3" data-kit="reservas"></div>
+    </div>
+  </section>
+
+  <!-- EVENTOS -->
+  <section class="eventos bloque" id="eventos">
+    <div class="cabeza">
+      <p class="kicker rv">Resto &amp; Eventos</p>
+      <h2 class="titulo rv" style="--d:1">Su celebración, <em>en la casona</em></h2>
+      <p class="bajada rv" style="--d:2">Cumpleaños, empresas y encuentros privados de hasta 80 personas.</p>
+    </div>
+    <div class="eventos__grilla">
+      <figure class="ev ev--a rv-foto"><img src="img/evento-salon.webp" alt="El salón lleno, de noche" width="1023" height="1278" loading="lazy" decoding="async"><figcaption>Salón principal</figcaption></figure>
+      <figure class="ev ev--b rv-foto" style="--d:1"><img src="img/evento-barra.webp" alt="La barra en una noche llena" width="1000" height="1249" loading="lazy" decoding="async"><figcaption>Barra</figcaption></figure>
+      <figure class="ev ev--c rv-foto" style="--d:2"><img src="img/evento-patio.webp" alt="El patio cubierto" width="1000" height="1778" loading="lazy" decoding="async"><figcaption>Patio</figcaption></figure>
+      <form class="ev-form rv" style="--d:2" id="evForm" novalidate>
+        <h3>Consultá por tu evento</h3>
+        <label class="campo"><span>¿Qué celebran?</span>
+          <select name="tipo">
+            <option>Cumpleaños</option><option>Evento de empresa</option><option>Aniversario o casamiento</option><option>Otro</option>
+          </select>
+        </label>
+        <div class="campo-fila">
+          <label class="campo"><span>Fecha</span><input type="date" name="fecha"></label>
+          <label class="campo"><span>Personas</span><input type="number" name="personas" min="10" max="80" inputmode="numeric" placeholder="30"></label>
+        </div>
+        <label class="campo"><span>Nombre</span><input name="nombre" autocomplete="name" placeholder="Tu nombre"></label>
+        <label class="campo"><span>Algo más</span><textarea name="nota" rows="2" placeholder="Horario, menú, lo que imagines"></textarea></label>
+        <p class="ev-form__msg" role="alert" hidden></p>
+        <button type="submit" class="btn btn--laton btn--bloque">Consultar por WhatsApp</button>
+        <p class="ev-form__nota">Te responden por WhatsApp, solo mensajes de texto.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- VISITANOS -->
+  <section class="visitanos bloque" id="visitanos">
+    <figure class="visitanos__foto rv-foto">
+      <div class="arco__marco"><img src="img/fachada-fogon.webp" alt="La fachada de La Villa de noche, con el fogón encendido" width="914" height="1620" loading="lazy" decoding="async"></div>
+    </figure>
+    <div class="visitanos__info">
+      <p class="kicker rv">Visitanos</p>
+      <h2 class="titulo rv" style="--d:1">Gualeguaychú 4104</h2>
+      <p class="bajada rv" style="--d:2">Villa Devoto, Ciudad de Buenos Aires</p>
+      <dl class="horarios rv" style="--d:3">
+        <div><dt>Miércoles a viernes</dt><dd>Cena · 20 a 24 h</dd></div>
+        <div><dt>Sábados</dt><dd>Almuerzo · 12 a 16 h<br>Cena · 20 a 24 h</dd></div>
+        <div><dt>Domingos</dt><dd>Almuerzo · 12 a 16 h</dd></div>
+        <div><dt>Lunes y martes</dt><dd>Cerrado</dd></div>
+      </dl>
+      <div class="visitanos__botones rv" style="--d:4">
+        <button type="button" class="btn btn--laton" data-kit-open="reservas">Reservá tu mesa</button>
+        <a class="btn btn--linea" href="https://www.google.com/maps/search/?api=1&amp;query=Gualeguaych%C3%BA+4104%2C+Villa+Devoto%2C+CABA" target="_blank" rel="noopener">Cómo llegar</a>
+      </div>
+      <p class="visitanos__wa rv" style="--d:5">WhatsApp <a href="https://wa.me/5491133017042" target="_blank" rel="noopener">+54 9 11 3301-7042</a> · solo mensajes de texto</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pie">
+  <div class="pie__marca">
+    <img src="img/isotipo.svg" alt="" width="56" height="56" loading="lazy">
+    <span>LA VILLA</span>
+    <small>Resto &amp; Eventos</small>
+  </div>
+  <nav class="pie__links" aria-label="Enlaces">
+    <a href="https://www.instagram.com/casadelavillaarg/" target="_blank" rel="noopener">Instagram</a>
+    <a href="#carta">Carta</a>
+    <a href="#eventos">Eventos</a>
+    <a href="https://wa.me/5491133017042" target="_blank" rel="noopener">WhatsApp</a>
+  </nav>
+  <p class="pie__legal">© <span id="anio">2026</span> La Villa · Gualeguaychú 4104, Villa Devoto</p>
+  <p class="pie__credito">Sitio desarrollado por <a href="https://alejomfernandez.com.ar" target="_blank" rel="noopener">Alejo Martín Fernández</a></p>
+</footer>
+
+<div class="visor" id="visor" hidden>
+  <div class="visor__fondo" data-cerrar></div>
+  <figure class="visor__caja">
+    <button type="button" class="visor__x" data-cerrar aria-label="Cerrar foto"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <img alt="">
+    <figcaption></figcaption>
+  </figure>
+</div>
+
+<script type="module" src="js/main.js?v=1"></script>
+</body>
+</html>
